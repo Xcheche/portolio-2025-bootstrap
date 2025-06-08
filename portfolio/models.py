@@ -49,3 +49,23 @@ class Portfolio(models.Model):
         from django.urls import reverse
         return reverse('portfolio:portfolio_detail', kwargs={'id': self.pk})
     
+    
+    
+    
+    
+class Testimonial(models.Model):
+    name = models.CharField(max_length=100)
+    role = models.CharField(max_length=100, blank=True)
+    image = models.ImageField(upload_to='testimonials/%Y/%m/%d/', blank=True, null=True)
+    message = models.TextField()
+    rating = models.PositiveIntegerField(default=5)
+    is_approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.name} - {self.role}"
+    class Meta:
+        verbose_name = 'Testimonial'
+        verbose_name_plural = 'Testimonials'
+        ordering = ['-id']
+        
+        # This will ensure that the testimonials are ordered by their ID in descending order.    

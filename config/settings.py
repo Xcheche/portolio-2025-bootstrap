@@ -31,12 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 DJANGO_APPS = [
+    'baton',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'baton.autodiscover',
 ]
 PROJECT_APPS = [
     # Add your project-specific apps here
@@ -133,3 +135,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+BATON = {
+    'SITE_HEADER': 'Cheche',
+    'SITE_TITLE': 'Cheche Admin',
+    'INDEX_TITLE': 'Welcome to Cheche Admin',
+    'APP_INDEX_TITLE': 'Cheche App Index',
+    'MODEL_INDEX_TITLE': 'Cheche Model Index',
+    'HIDE_THEMING': True,
+    'HIDE_DASHBOARD': False,
+      # Use absolute static path
+}

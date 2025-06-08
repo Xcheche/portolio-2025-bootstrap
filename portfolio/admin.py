@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Portfolio
+from .models import Portfolio,Testimonial
 
 class PortfolioAdmin(admin.ModelAdmin):
     list_display = ('title', 'status', 'created')
@@ -7,3 +7,14 @@ class PortfolioAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
  
 admin.site.register(Portfolio, PortfolioAdmin)
+
+
+
+
+class TestimonialAdmin(admin.ModelAdmin):
+    list_display = ('name', 'role', 'rating', 'is_approved')
+    list_filter = ('is_approved',)
+    search_fields = ('name', 'role', 'message')
+
+
+admin.site.register(Testimonial,TestimonialAdmin)    
