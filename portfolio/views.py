@@ -1,5 +1,6 @@
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
-
+from django.core.paginator import Paginator
 from portfolio.models import Testimonial, Portfolio
 from portfolio.forms import TestimonialForm
 from django.shortcuts import redirect
@@ -9,15 +10,15 @@ from django.contrib import messages
 
 def portfolio(request):
     portfolios = Portfolio.objects.all().filter(status='published').order_by('-created')
-    testimonials = Testimonial.objects.filter(is_approved=True)[:7]  # Fetch only the first 5 approved testimonials
-    # If you want to limit the number of testimonials displayed, you can use slicing
-    # testimonials = testimonials[:5]  # Display only the first 5 testimonials
-    
-    
+    testimonials = Testimonial.objects.filter(is_approved=True).order_by('-id')[:2]
+    paginator = Paginator(portfolios, 2)  # Paginate with 2 items per page
+    page = request.GET.get('page')
+    page_obj = paginator.get_page(page)
     context = {
-       
-        'portfolios': portfolios,
+        'portfolios': page_obj,  # Pass only the paginated page object
         'testimonials': testimonials,
+        'paginator': paginator,
+        'page_obj': page_obj,
     }
 
     return render(request, 'portfolio/portfolio.html', context)
@@ -36,8 +37,13 @@ def portfolio_detail(request,id):
         form = TestimonialForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()  # is_approved stays False by default
-            messages.success(request, 'Your testimonial has been submitted and is awaiting approval. Check home page for updates.')
-            return redirect('/')  # refresh page
+            #messages.success(request, 'Your testimonial has been submitted and is awaiting approval.')
+            
+            #send email to admin 
+            
+            return redirect(request.path) #using ajax
+        else:
+            form = TestimonialForm()
 
     context = {
         'portfolio': portfolio,
@@ -45,6 +51,10 @@ def portfolio_detail(request,id):
         'form': form,# Testimonial form instance
     }
     return render(request, 'portfolio/portfolio_detail.html', context)
+
+
+
+
 
 
 

@@ -1,0 +1,28 @@
+<div  class="card testimonial-form mb-4 text-center h-50 " >
+  <div id="msg"></div>
+    <div class="card-body">
+
+      <h3 class="card-title">Testimonial</h3>
+      <p class="card-text">I value your feedback! Please share your testimonial about this project.</p>
+  <hr>
+      {% if form %}
+        {% if form.errors %}
+          <div class="alert alert-danger"">
+            <strong>Error!</strong> Please correct the errors below.
+          </div>
+        {% endif %}
+        <form  id="testimonial-form"    method="POST" enctype="multipart/form-data" class="mb-3" 
+        
+        >
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-outline-dark">Submit</button>
+        </form>
+      {% else %}
+        <div class="alert alert-warning">
+          Testimonial form is not available.
+        </div>
+      {% endif %}
+    </div>
+  </div>
+ 
