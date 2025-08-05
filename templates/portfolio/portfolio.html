@@ -1,111 +1,151 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-  <main class="main">
+<main class="main">
+  <!-- Page Title -->
+  <div class="page-title light-background">
+    <div class="container">
+      <h1>Portfolio</h1>
+      <nav class="breadcrumbs">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li class="current">Portfolio</li>
+        
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- End Page Title -->
 
-    <!-- Page Title -->
-    <div class="page-title light-background">
-      <div class="container">
-        <h1>Portfolio</h1>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="/">Home</a></li>
-            <li class="current">Portfolio</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio section">
-
-      <div    class="container">
-
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-
-          <div class="row align-items-center">
-            <div class="col-lg-7 portfolio-info">
-              <h3>Hey, I'm Chekwube Omenife</h3>
-              <p>Primarily a Backend Developer with working knowledge of Frontend technologies</p>
-            </div>
-            <div class="col-lg-5 text-center text-lg-end">
-              <ul  class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-                <li>
-                  <!--Search-->
-                  <form method="get" action="#" style="display:inline;">
-                    <input type="text" name="q" placeholder="Search" style="width:70px; font-size:12px; padding:2px 4px;">
-                    <button type="submit" style="padding:2px 6px; font-size:12px; border:none; background:#eee; border-radius:3px;">
-                      <i class="bi bi-search"></i>
-                    </button>
-                  </form>
-                  <!--End Search-->
-
-                  
-                </li>
-                <li data-filter="*" class="filter-active">All</li>
-                <li data-filter=".filter-app">App</li>
-                <li data-filter=".filter-web">Web</li>
-               
-              </ul><!-- End Portfolio Filters -->
-            </div>
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio section">
+    <div class="container">
+      <div
+        class="isotope-layout"
+        data-default-filter="*"
+        data-layout="masonry"
+        data-sort="original-order"
+      >
+        <div class="row align-items-center">
+          <div class="col-lg-7 portfolio-info">
+            <h3>Hey, I'm Chekwube Omenife</h3>
+            <p>
+              Primarily a Backend Developer with working knowledge of Frontend
+              technologies
+            </p>
           </div>
-
-          <div     class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200" style="position: relative; height: 1344px;">
-
-            {% for item in portfolios %}
-            <div  class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ item.category|lower }}">
-
-              <div class="portfolio-content h-100">
-                <img src="{{ item.image.url }}" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>{{ item.title }}</h4>
-                 
-                  <div>
-                    <a href="{{ item.preview_image.url }}" title="{{ item.title }}" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                    <a href="{{ item.get_absolute_url }}" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-            {% endfor %}
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-          </div><!-- End Portfolio Container -->
-
+          <div class="col-lg-5 text-center text-lg-end">
+            <ul
+              class="portfolio-filters isotope-filters"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <li>
+                <!--Search-->
+                <form
+                  method="get"
+                  action="{% url 'portfolio:portfolio_search' %}"
+                  id="portfolio-search-form"
+                  style="display: inline"
+                >
+                  {% csrf_token %}
+                  <input
+                    type="text"
+                    name="q"
+                    value="{{ query }}"
+                    id="search-input"
+                    placeholder="Search"
+                    style="width: 70px; font-size: 12px; padding: 2px 4px"
+                  />
+                  <button
+                    type="submit"
+                    style="
+                      padding: 2px 6px;
+                      font-size: 12px;
+                      border: none;
+                      background: #eee;
+                      border-radius: 3px;
+                    "
+                  >
+                    <i class="bi bi-search"></i>
+                  </button>
+                </form>
+                <!--End Search-->
+              </li>
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+            <!-- End Portfolio Filters -->
+          </div>
         </div>
 
+        <!--spinner-->
+       
+        {% include 'partials/spinner.html' %}
+        <!--End spinner-->
+
+
+        <!-- Portfolio Container -->
+        <div  
+          class="row gy-4 isotope-container"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          style="position: relative; height: 1344px"
+          id="pagination-content"
+        
+        >
+        <!-- Portfolio Items  looping-->
+          {% for item in portfolios %}
+          <div
+            id="portfolio-grid"
+            class="col-lg-4 col-md-6 portfolio-item isotope-item filter-{{ item.category|lower }} "
+            
+          >
+            <div class="portfolio-content h-100">
+              <img src="{{ item.image.url }}" class="img-fluid" alt="" />
+              <div class="portfolio-info">
+                <h4>{{ item.title }}</h4>
+
+                <div>
+                  <a
+                    href="{{ item.preview_image.url }}"
+                    title="{{ item.title }}"
+                    data-gallery="portfolio-gallery-app"
+                    class="glightbox preview-link"
+                    ><i class="bi bi-zoom-in"></i
+                  ></a>
+                  <a
+                    href="{{ item.get_absolute_url }}"
+                    title="More Details"
+                    class="details-link"
+                    ><i class="bi bi-link-45deg"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Portfolio Item -->
+          {% endfor %}
+        </div>
+        <!-- End Portfolio Container -->
       </div>
+    </div>
+  </section>
+  <!-- /Portfolio Section -->
 
-    </section><!-- /Portfolio Section -->
+  <!--Pagination-->
+  
+  {% include 'partials/pagination.html' %}
 
-<!--Pagination-->
-{% include 'partials/pagination.html' %}
-
-   <!-- Testimonials Section -->
-   <section id="testimonials" class="testimonials section">
-
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials section">
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
       <h2>Testimonials</h2>
-   
-    </div><!-- End Section Title -->
+    </div>
+    <!-- End Section Title -->
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
-
       <div class="swiper init-swiper">
         <script type="application/json" class="swiper-config">
           {
@@ -123,22 +163,23 @@
           }
         </script>
         <div class="swiper-wrapper">
-
           {% for t in testimonials %}
           <div class="swiper-slide">
             <div class="testimonial-item">
-
-              <img src="{% if t.image %}{{ t.image.url }}{% else %}{% static 'img/testimonials/default.jpeg' %}{% endif %}" class="testimonial-img img-fluid" alt="testimonial-image" style="width: 100px; height: 100px;">
+              <img
+                src="{% if t.image %}{{ t.image.url }}{% else %}{% static 'img/testimonials/default.jpeg' %}{% endif %}"
+                class="testimonial-img img-fluid"
+                alt="testimonial-image"
+                style="width: 100px; height: 100px"
+              />
               <h3>{{ t.name }}</h3>
               <h4>{{ t.role }}</h4>
               <div class="stars">
-                {% for i in "12345" %}
-                  {% if forloop.counter <= t.rating %}
-                    <i class="bi bi-star-fill"></i>
-                  {% else %}
-                    <i class="bi bi-star"></i>
-                  {% endif %}
-                {% endfor %}
+                {% for i in "12345" %} {% if forloop.counter <= t.rating %}
+                <i class="bi bi-star-fill"></i>
+                {% else %}
+                <i class="bi bi-star"></i>
+                {% endif %} {% endfor %}
               </div>
               <p>
                 <i class="bi bi-quote quote-icon-left"></i>
@@ -146,18 +187,15 @@
                 <i class="bi bi-quote quote-icon-right"></i>
               </p>
             </div>
-          </div><!-- End testimonial item -->
+          </div>
+          <!-- End testimonial item -->
           {% endfor %}
-
         </div>
         <div class="swiper-pagination"></div>
       </div>
-
     </div>
-
-  </section><!-- /Testimonials Section -->
-
-  </main>
-
+  </section>
+  <!-- /Testimonials Section -->
+</main>
 
 {% endblock %}

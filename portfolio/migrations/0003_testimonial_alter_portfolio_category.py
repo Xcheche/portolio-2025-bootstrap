@@ -6,30 +6,40 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('portfolio', '0002_alter_portfolio_category'),
+        ("portfolio", "0002_alter_portfolio_category"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Testimonial',
+            name="Testimonial",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('role', models.CharField(blank=True, max_length=100)),
-                ('image', models.ImageField(upload_to='testimonials/')),
-                ('message', models.TextField()),
-                ('rating', models.PositiveIntegerField(default=5)),
-                ('is_approved', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("role", models.CharField(blank=True, max_length=100)),
+                ("image", models.ImageField(upload_to="testimonials/")),
+                ("message", models.TextField()),
+                ("rating", models.PositiveIntegerField(default=5)),
+                ("is_approved", models.BooleanField(default=False)),
             ],
             options={
-                'verbose_name': 'Testimonial',
-                'verbose_name_plural': 'Testimonials',
-                'ordering': ['-id'],
+                "verbose_name": "Testimonial",
+                "verbose_name_plural": "Testimonials",
+                "ordering": ["-id"],
             },
         ),
         migrations.AlterField(
-            model_name='portfolio',
-            name='category',
-            field=models.CharField(choices=[('app', 'App'), ('web', 'Web')], max_length=20),
+            model_name="portfolio",
+            name="category",
+            field=models.CharField(
+                choices=[("app", "App"), ("web", "Web")], max_length=20
+            ),
         ),
     ]

@@ -1,6 +1,6 @@
 
 
-
+// Testimonial
 $("#testimonial-form").on("submit", function (e) {
   e.preventDefault();
   $.ajax({
@@ -26,10 +26,3 @@ $("#testimonial-form").on("submit", function (e) {
     },
   });
 });
-
-
-
-
-
-
-

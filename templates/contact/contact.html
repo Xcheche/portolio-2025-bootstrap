@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 {% block content %}
 
 
@@ -58,31 +59,54 @@
           </div>
 
           <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
+            <form action="{% url 'contact:contact' %}" method="post" class="django-email-form" data-aos="fade-up" data-aos-delay="500">
+            {% csrf_token %}
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                
+                 {{ form.name|add_class:"form-control"|attr:"placeholder:Your Name" }}
                 </div>
 
                 <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                 
+                  {{ form.email|add_class:"form-control"|attr:"placeholder:Your Email" }}
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  <select name="subject" id="" class="form-control">
+                    <option value="">Select Subject</option>
+                    <option value="i have a project in mind">I have a project in mind</option>
+                    <option value="i'm a developer looking for collaboration">I'm a developer looking for collaboration</option>
+                    <option value="i'm a recruiter">I'm a recruiter</option>
+                    <option value="other">Other</option>
+                  </select>
                 </div>
 
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                  {{ form.message|add_class:"form-control"|attr:"rows:6,placeholder:Message" }}
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                 
 
-                  <button type="submit">Send Message</button>
+                  <!--Checking for field errors coming from form validation is_valid-->
+                  <ul style="list-style: none; padding: 0; margin: 0;">
+                    {% for field in form %}
+                     {% if field.errors %}
+                      {% for error in field.errors %}
+                    <li style="color: red; list-style: none;">{{error}}</li>
+                    {% endfor %}
+                    {% endif %}
+                     {% endfor %}
+                  </ul>
+                  <!--End of checking for field errors-->
+
+                  <!--Showing Non field errors coming from forms.py-->
+                  <li style="color: darkred; list-style: none;">{{form.non_field_errors}}</li>
+                  <!--End of showing non field errors-->
+
+                  <button type="submit" class="btn btn-primary">Send Message</button>
                 </div>
 
               </div>
