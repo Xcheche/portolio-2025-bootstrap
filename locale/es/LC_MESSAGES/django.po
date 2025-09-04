@@ -1,0 +1,242 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-04 17:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
+#: config/settings.py:142
+msgid "English"
+msgstr "Inglés"
+
+msgid "Spanish"
+msgstr "Español"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Email"
+msgstr "Correo electrónico"
+
+msgid "Subject"
+msgstr "Asunto"
+
+msgid "Message"
+msgstr "Mensaje"
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "Image"
+msgstr "Imagen"
+
+msgid "Rating"
+msgstr "Calificación"
+
+msgid "App"
+msgstr "Aplicación"
+
+msgid "Web"
+msgstr "Web"
+
+msgid "Draft"
+msgstr "Borrador"
+
+msgid "Published"
+msgstr "Publicado"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Slug"
+msgstr "Slug"
+
+msgid "Preview Image"
+msgstr "Imagen de vista previa"
+
+msgid "Project URL"
+msgstr "URL del proyecto"
+
+msgid "Stack"
+msgstr "Stack"
+
+msgid "Features Title"
+msgstr "Título de características"
+
+msgid "Features Description"
+msgstr "Descripción de características"
+
+msgid "Category"
+msgstr "Categoría"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Created"
+msgstr "Creado"
+
+msgid "Development"
+msgstr "Desarrollo"
+
+msgid "Production"
+msgstr "Producción"
+
+msgid "Project Status"
+msgstr "Estado del proyecto"
+
+msgid "Portfolio"
+msgstr "Portafolio"
+
+msgid "Portfolios"
+msgstr "Portafolios"
+
+msgid "Is Approved"
+msgstr "Está aprobado"
+
+msgid "Testimonial"
+msgstr "Testimonio"
+
+msgid "Testimonials"
+msgstr "Testimonios"
+
+msgid "Qualifications"
+msgstr "Calificaciones"
+
+msgid "Bio"
+msgstr "Biografía"
+
+msgid "Blog URL"
+msgstr "URL del blog"
+
+msgid "Tech Stack"
+msgstr "Stack tecnológico"
+
+msgid "Phone"
+msgstr "Teléfono"
+
+msgid "Social Links"
+msgstr "Enlaces sociales"
+
+msgid "City"
+msgstr "Ciudad"
+
+msgid "Available"
+msgstr "Disponible"
+
+msgid "Not Available"
+msgstr "No disponible"
+
+msgid "Freelance Status"
+msgstr "Estado de freelance"
+
+msgid "About"
+msgstr "Acerca de"
+
+msgid "Abouts"
+msgstr "Acerca de"
+
+msgid "Page Not Found"
+msgstr "Página no encontrada"
+
+msgid "Sorry, the page you requested does not exist."
+msgstr "Lo sentimos, la página que solicitaste no existe."
+
+msgid "Return Home"
+msgstr "Volver al inicio"
+
+msgid "Server Error"
+msgstr "Error del servidor"
+
+msgid "Sorry, something went wrong on our end. Please try again later."
+msgstr "Lo sentimos, algo salió mal de nuestro lado. Por favor, inténtalo más tarde."
+
+msgid "Go to Home"
+msgstr "Ir al inicio"
+
+msgid "Portfolio - Cheche"
+msgstr "Portafolio - Cheche"
+
+msgid "Home"
+msgstr "Inicio"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Address"
+msgstr "Dirección"
+
+msgid "Lagos, Nigeria"
+msgstr "Lagos, Nigeria"
+
+msgid "Select Subject"
+msgstr "Seleccionar asunto"
+
+msgid "I have a project in mind"
+msgstr "Tengo un proyecto en mente"
+
+msgid "I\""
+msgstr "Yo\""
+
+msgid "Other"
+msgstr "Otro"
+
+msgid "Send Message"
+msgstr "Enviar mensaje"
+
+msgid "Message Sent Successfully!"
+msgstr "¡Mensaje enviado exitosamente!"
+
+msgid "Thank you for reaching out. I’ll get back to you as soon as possible."
+msgstr "Gracias por contactarme. Te responderé lo antes posible."
+
+msgid "Back to Home"
+msgstr "Volver al inicio"
+
+msgid "Copyright"
+msgstr "Derechos de autor"
+
+msgid "Cheche"
+msgstr "Cheche"
+
+msgid "All Rights Reserved"
+msgstr "Todos los derechos reservados"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Next"
+msgstr "Siguiente"
+
+msgid "Share"
+msgstr "Compartir"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "Hey, I'm Chekwube Omenife"
+msgstr "Hola, soy Chekwube Omenife"
+
+msgid "Primarily a Backend Developer with working knowledge of Frontend technologies"
+msgstr "Principalmente desarrollador Backend con conocimientos en tecnologías Frontend"
+
+msgid "All"
+msgstr "Todos"
+
+msgid "Portfolio Details"
+msgstr "Detalles del portafolio"

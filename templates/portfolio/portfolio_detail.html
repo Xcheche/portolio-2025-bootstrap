@@ -1,101 +1,63 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% block content %}
 
-  <main class="main">
 
-    <!-- Page Title -->
-    <div class="page-title light-background">
-      <div class="container">
-        <h1>Portfolio Details</h1>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="/">Home</a></li>
-            <li class="current">Portfolio Details</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
+<main class="main">
 
-    <!-- Portfolio Details Section -->
-    <section id="portfolio-details" class="portfolio-details section">
+  <!-- Page Title -->
+  <div class="text-white py-5 mb-4 rounded shadow-sm">
+    <div class="container">
+      <h1 class="display-4 fw-bold mb-2">{% trans 'Portfolio Details' %}</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-transparent p-0">
+          <li class="breadcrumb-item"><a href="/" class="text-white-50">{% trans 'Home' %}</a></li>
+          <li class="breadcrumb-item active text-white" aria-current="page">{% trans 'Portfolio Details' %}</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+  <!-- Portfolio Details Section -->
+  <section id="portfolio-details" class="py-5">
+    <div class="container">
+      <div class="row g-5">
 
-        <div class="row gy-4">
+        <!-- Portfolio Images Carousel -->
+       {% include 'partials/portfolio_carousel.html' %}
 
-          <div class="col-lg-8">
-            <div class="portfolio-details-slider swiper init-swiper">
-
-              <script type="application/json" class="swiper-config">
-                {
-                  "loop": true,
-                  "speed": 600,
-                  "autoplay": {
-                    "delay": 5000
-                  },
-                  "slidesPerView": "auto",
-                  "pagination": {
-                    "el": ".swiper-pagination",
-                    "type": "bullets",
-                    "clickable": true
-                  }
-                }
-              </script>
-
-              <div class="swiper-wrapper align-items-center">
-
-                <div class="swiper-slide">
-                  <img src="{{ portfolio.image.url }}" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="{{ portfolio.preview_image.url }}" alt="">
-                </div>
-
-
-              </div>
-              <div class="swiper-pagination"></div>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
-              <h3>Project information</h3>
-              <ul>
-                <li><strong>Category</strong>: {{ portfolio.category }}</li>
-                <li><strong>Stack</strong>: {{ portfolio.stack }}</li>
-                <li><strong>Project date</strong>: {{ portfolio.created }}</li>
-                <li><strong>Project URL</strong>: <a href="{{ portfolio.project_url }}">{{ portfolio.project_url }}</a></li>
+        <!-- Portfolio Info -->
+        <div class="col-lg-4">
+          <div class="card shadow mb-4">
+            <div class="card-body">
+              <h3 class="card-title text-primary mb-3">Project Information</h3>
+              <ul class="list-group list-group-flush mb-3">
+                <li class="list-group-item"><strong>Category:</strong> {{ portfolio.category }}</li>
+                <li class="list-group-item"><strong>Stack:</strong> {{ portfolio.stack }}</li>
+                <li class="list-group-item"><strong>Status:</strong> {{ portfolio.project_status }}</li>
+                <li class="list-group-item"><strong>Project date:</strong> {{ portfolio.created }}</li>
+                <li class="list-group-item">
+                  <strong>Project URL:</strong>
+                  <a href="{{ portfolio.project_url }}" class="link-primary" target="_blank">{{ portfolio.project_url }}</a>
+                </li>
               </ul>
+              <h4 class="text-secondary">{{ portfolio.features_title }}</h4>
+              <p class="mb-0">{{ portfolio.features_description }}</p>
             </div>
-            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-              <h2>{{ portfolio.features_title }}</h2>
-              <p>
-                {{ portfolio.features_description }}
-              </p>
-            </div>
-
-
-
-
-  {% include 'partials/testimonial_form.html' %}
-
-
-
-</div>
-
-
-            
           </div>
 
+          <div class="card shadow">
+            <div class="card-body">
+              {% include 'partials/testimonial_form.html' %}
+            </div>
+          </div>
         </div>
 
       </div>
+    </div>
+  </section>
 
-    </section><!-- /Portfolio Details Section -->
+</main>
 
-  </main>
-  
-
-{% endblock %}  
+{% endblock %}

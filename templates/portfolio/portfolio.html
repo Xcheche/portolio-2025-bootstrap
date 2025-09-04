@@ -1,14 +1,17 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} 
+{% load i18n %}
+{% load static %}
+ {% block content %}
 
 <main class="main">
   <!-- Page Title -->
   <div class="page-title light-background">
     <div class="container">
-      <h1>Portfolio</h1>
+      <h1>{% trans 'Portfolio' %}</h1>
       <nav class="breadcrumbs">
         <ol>
-          <li><a href="/">Home</a></li>
-          <li class="current">Portfolio</li>
+          <li><a href="/">{% trans 'Home' %}</a></li>
+          <li class="current">{% trans 'Portfolio' %}</li>
         
         </ol>
       </nav>
@@ -27,10 +30,9 @@
       >
         <div class="row align-items-center">
           <div class="col-lg-7 portfolio-info">
-            <h3>Hey, I'm Chekwube Omenife</h3>
+            <h3>{% trans "Hey, I'm Chekwube Omenife" %}</h3>
             <p>
-              Primarily a Backend Developer with working knowledge of Frontend
-              technologies
+              {% trans 'Primarily a Backend Developer with working knowledge of Frontend technologies' %}
             </p>
           </div>
           <div class="col-lg-5 text-center text-lg-end">
@@ -71,9 +73,9 @@
                 </form>
                 <!--End Search-->
               </li>
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-web">Web</li>
+              <li data-filter="*" class="filter-active">{% trans 'All' %}</li>
+              <li data-filter=".filter-app">{% trans 'App' %}</li>
+              <li data-filter=".filter-web">{% trans 'Web' %}</li>
             </ul>
             <!-- End Portfolio Filters -->
           </div>
@@ -120,6 +122,7 @@
                     class="details-link"
                     ><i class="bi bi-link-45deg"></i
                   ></a>
+                
                 </div>
               </div>
             </div>
@@ -141,7 +144,7 @@
   <section id="testimonials" class="testimonials section">
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
-      <h2>Testimonials</h2>
+      <h2>{% trans 'Testimonials' %}</h2>
     </div>
     <!-- End Section Title -->
 

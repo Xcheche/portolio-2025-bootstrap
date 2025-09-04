@@ -1,10 +1,44 @@
+{% load i18n %}
 <footer id="footer" class="footer light-background">
     <div class="container">
       <div class="copyright text-center">
         <p>
-          © <span>Copyright</span>
-          <strong class="px-1 sitename">Cheche</strong>
-          <span>All Rights Reserved</span>
+          © <span>{% trans 'Copyright' %}</span>
+          <strong class="px-1 sitename">{% trans 'Cheche' %}</strong>
+          <span id="datetime"></span>
+          <span id="weather"></span>
+          <script>
+            // Display current date and time
+            function updateDateTime() {
+              const now = new Date();
+              document.getElementById('datetime').textContent =
+                now.toLocaleString();
+            }
+            setInterval(updateDateTime, 1000);
+            updateDateTime();
+
+            // Fetch weather details (example: OpenWeatherMap API)
+            async function fetchWeather() {
+              const apiKey = '4e85d5afa37167c70037089038b4b66c'; // Replace with your OpenWeatherMap API key
+              const city = 'London'; // Change to your city
+              try {
+                const res = await fetch(
+                  `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+                );
+                const data = await res.json();
+                if (data.main) {
+                  document.getElementById('weather').textContent =
+                    ` | ${city}: ${data.main.temp}°C, ${data.weather[0].main}`;
+                } else {
+                  document.getElementById('weather').textContent = ' | Weather unavailable';
+                }
+              } catch {
+                document.getElementById('weather').textContent = ' | Weather unavailable';
+              }
+            }
+            fetchWeather();
+          </script>
+          <span>{% trans 'All Rights Reserved' %}</span>
         </p>
       </div>
       <div class="social-links d-flex justify-content-center">

@@ -4,8 +4,13 @@ from . import views
 app_name = "portfolio"
 
 urlpatterns = [
+    # Home
     path("", views.portfolio, name="portfolio"),
-    path("portfolio_detail/<int:id>/", views.portfolio_detail, name="portfolio_detail"),
+    path(
+        "<int:year>/<int:month>/<int:day>/<slug:portfolio>/",
+        views.portfolio_detail,
+        name="portfolio_detail",
+    ),
     # urls.py
     # about page
     path("about/", views.about, name="about"),

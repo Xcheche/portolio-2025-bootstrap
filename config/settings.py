@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 DJANGO_APPS = [
+    "modeltranslation",
     "baton",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -40,6 +44,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
     "baton.autodiscover",
     "widget_tweaks",
+    "rosetta",
 ]
 PROJECT_APPS = [
     # Add your project-specific apps here
@@ -53,6 +58,7 @@ INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",  # for i18n
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -122,6 +128,24 @@ USE_I18N = True
 USE_TZ = True
 
 
+from django.utils.translation import gettext_lazy as _
+
+# Default language
+LANGUAGE_CODE = "en"
+
+"""
+Supported languages
+"""
+# TODO: Add more languages as needed
+# TODO: Create a folder locale and inside it create a folder for each language code eg locale/fr, locale/ar etc
+LANGUAGES = (
+    ("en", _("English")),
+    ("es", _("Spanish")),
+)
+
+LOCALE_PATHS = (os.path.join(BASE_DIR, "locale/"),)
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
@@ -152,13 +176,39 @@ BATON = {
 # In a development environment, you can use Mailpit to catch emails.
 # It's an SMTP server that runs locally and provides a web interface.
 # This prevents test emails from being sent to real addresses.
+# settings.py
+
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+else:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    # plus real SMTP settings
 
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "localhost"  # Mailpit host
-EMAIL_PORT = 1025  # Mailpit SMTP port
-EMAIL_HOST_USER = ""  # No auth needed
-EMAIL_HOST_PASSWORD = ""
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = False
-DEFAULT_FROM_EMAIL = "no-reply@example.com"  # Use anything here
+EMAIL_HOST = config("EMAIL_HOST", default="localhost")
+EMAIL_PORT = config("EMAIL_PORT", default=1025, cast=int)
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=False, cast=bool)
+EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default="webmaster@localhost")
+
+
+ADMINS = [
+    ("Cheche Omenife", "checheomenife@gmail.com"),
+]
+
+
+MODELTRANSLATION_FALLBACK_LANGUAGES = {
+    "default": ("en",),
+    "es": ("es", "en"),  # Spanish falls back to English
+    # etc.
+}
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = "en"
+MODELTRANSLATION_LANGUAGES = ("en", "es")
+
+
+ROSETTA_LANGUAGES = (
+    ("en", "English"),
+    ("es", "Spanish"),
+)

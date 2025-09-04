@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% load widget_tweaks %}
 {% block content %}
@@ -13,8 +14,8 @@
         <h1>Contact</h1>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="/">Home</a></li>
-            <li class="current">Contact</li>
+            <li><a href="/">{% trans 'Home' %}</a></li>
+            <li class="current">{% trans 'Contact' %}</li>
           </ol>
         </nav>
       </div>
@@ -31,8 +32,8 @@
             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
               <i class="bi bi-geo-alt flex-shrink-0"></i>
               <div>
-                <h3>Address</h3>
-                <p>Lagos, Nigeria</p>
+                <h3>{% trans 'Address' %}</h3>
+                <p>{% trans 'Lagos, Nigeria' %}</p>
               </div>
             </div><!-- End Info Item -->
 
@@ -41,7 +42,7 @@
             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
               <i class="bi bi-envelope flex-shrink-0"></i>
               <div>
-                <h3>Email<br></h3>
+                <h3>{% trans 'Email' %}<br></h3>
                 <a href="mailto:checheomenife@gmail.com"><span style="font-size: 1.5em; font-weight: bold;">@</span></a>
               </div>
             </div>
@@ -75,11 +76,11 @@
 
                 <div class="col-md-12">
                   <select name="subject" id="" class="form-control">
-                    <option value="">Select Subject</option>
-                    <option value="i have a project in mind">I have a project in mind</option>
-                    <option value="i'm a developer looking for collaboration">I'm a developer looking for collaboration</option>
-                    <option value="i'm a recruiter">I'm a recruiter</option>
-                    <option value="other">Other</option>
+                    <option value="">{% trans 'Select Subject' %}</option>
+                    <option value="i have a project in mind">{% trans 'I have a project in mind' %}</option>
+                    <option value="i'm a developer looking for collaboration">{% trans 'I\'m a developer looking for collaboration' %}</option>
+                    <option value="i'm a recruiter">{% trans 'I\'m a recruiter' %}</option>
+                    <option value="other">{% trans 'Other' %}</option>
                   </select>
                 </div>
 
@@ -106,7 +107,7 @@
                   <li style="color: darkred; list-style: none;">{{form.non_field_errors}}</li>
                   <!--End of showing non field errors-->
 
-                  <button type="submit" class="btn btn-primary">Send Message</button>
+                  <button type="submit" class="btn btn-primary">{% trans 'Send Message' %}</button>
                 </div>
 
               </div>

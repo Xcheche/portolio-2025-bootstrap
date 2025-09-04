@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Server Error (500){% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1>500: {% trans 'Server Error' %}</h1>
+    <p>{% trans 'Sorry, something went wrong on our end. Please try again later.' %}</p>
+    <a href="{% url 'portfolio:portfolio' %}" class="btn btn-primary">{% trans 'Go to Home' %}</a>
+</div>
+{% endblock %}

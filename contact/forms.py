@@ -2,12 +2,19 @@ from django import forms
 from .models import Contact
 from django.utils import timezone
 from datetime import timedelta
+from django.utils.translation import gettext_lazy as _
 
 
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ["name", "email", "subject", "message"]
+        labels = {
+            "name": _("Name"),
+            "email": _("Email"),
+            "subject": _("Subject"),
+            "message": _("Message"),
+        }
 
     def clean_email(self):
         email = self.cleaned_data.get("email")

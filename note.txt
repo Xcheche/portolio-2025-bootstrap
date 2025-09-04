@@ -1,0 +1,16 @@
+sudo apt-get update 
+sudo apt-get install gettext     #if on window get for window
+
+
+
+python manage.py makemessages -l <language_code> e.g python manage.py makemessages -l  es       #for spanish
+python manage.py makemessages --all #for all languages in settings
+
+Will create p.o files
+After editing p.o files run 
+
+# or converting p.o into m.o   but not necessary when using django rosetta because it automaically does it ater editing p.o in the ui unless using (gettext_lazy) for string 
+python manage.py compilemessages    or
+python manage.py compilemessages -l es  #for specific lanaguage
+
+

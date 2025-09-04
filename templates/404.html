@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found{% endblock %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1>404: {% trans 'Page Not Found' %}</h1>
+    <p>{% trans 'Sorry, the page you requested does not exist.' %}</p>
+    <a href="{% url 'portfolio:portfolio' %}" class="btn btn-primary">{% trans 'Return Home' %}</a>
+</div>
+{% endblock %}
